@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数字媒体数据集成与管理系统 · 张靖远</title>
+  <meta name="description" content="数字媒体数据集成与管理系统案例：以媒体资源本体、版权溯源、RAG 检索和证据链，把分散文件转化为可审计的数据资产。">
+  <meta property="og:title" content="数字媒体数据集成与管理系统">
+  <meta property="og:description" content="从散落文件到可检索、可追溯、可复用的媒体数据资产。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#case">跳到案例正文</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="主导航"><a class="brand" href="../index.html"><span class="brand-mark">JY</span><span>张靖远<small>AI Product Manager</small></span></a><button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" data-menu-toggle>☰</button><div class="nav-links" data-nav-links><a aria-current="page" href="../index.html#work">项目</a><a href="../index.html#method">方法</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><a class="nav-cta" href="mailto:zjy888@bupt.edu.cn">联系我</a></div></nav></header>
+
+  <main id="case">
+    <header class="case-hero"><div class="container"><a class="case-back" href="../index.html#work">返回精选项目</a><div class="case-title-grid"><h1>数字媒体数据集成与管理系统<span>RAG 与数据产品 · 独立产品设计</span></h1><p class="case-summary">把散落在文件夹中的视觉、音频、文本和 3D 素材，组织成具备来源、版权、用途与项目关系的数据资产，并让检索结果始终带着证据回来。</p></div><div class="case-facts"><div class="case-fact"><small>Role</small><strong>产品设计 / 独立著作权人</strong></div><div class="case-fact"><small>Scope</small><strong>数据本体 · RAG · 权利追踪</strong></div><div class="case-fact"><small>Registered</small><strong>2025.01</strong></div><div class="case-fact"><small>Copyright</small><strong>2025SR0148410</strong></div></div></div></header>
+
+    <section class="section"><div class="container case-layout"><aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#ontology">02 本体</a><a href="#retrieval">03 检索</a><a href="#pipeline">04 流程</a><a href="#rights">05 权利</a><a href="#learning">06 复用</a></aside><div class="case-content">
+      <section id="problem" class="reveal"><p class="section-kicker">01 / Problem</p><h2>真正丢失的不是文件，而是文件周围的语境。</h2><p class="lead">素材分散时，用户通常还能按文件名找到某个文件，却无法快速回答：它来自哪里、是否能商用、在哪个项目用过、为什么值得复用。</p><p>因此产品目标不是再做一个网盘，而是建立一层可查询的数据关系，让媒体资源从“存储对象”变成“可审计资产”。</p></section>
+
+      <section id="ontology" class="reveal"><p class="section-kicker">02 / Resource ontology</p><h2>先统一资源语言，再谈智能检索。</h2><div class="flow" aria-label="媒体资源数据结构"><div class="flow-step"><small>01</small><strong>资源身份</strong><span>类型、来源、主题、标签、版本</span></div><div class="flow-step"><small>02</small><strong>使用语境</strong><span>所属项目、使用位置、更新时间</span></div><div class="flow-step"><small>03</small><strong>权利信息</strong><span>作者、许可、授权范围、到期时间</span></div><div class="flow-step"><small>04</small><strong>关系网络</strong><span>跨项目引用、衍生版本、组合素材</span></div></div><p>这套本体把“素材是什么”“素材怎么用”“素材能否用”拆开建模，避免用一组模糊标签承担所有检索与治理需求。</p></section>
+
+      <section id="retrieval" class="reveal"><p class="section-kicker">03 / Evidence-first retrieval</p><h2>RAG 的价值不是生成摘要，而是缩短从意图到可信资源的距离。</h2><ol class="decision-list"><li><div><strong>检索</strong><span>根据主题、媒介类型、项目语境和权利要求召回候选资源。</span></div></li><li><div><strong>过滤</strong><span>剔除许可冲突、版本过期和与当前用途不匹配的资源。</span></div></li><li><div><strong>证据组织</strong><span>保留来源链接、授权说明、历史用途和推荐依据。</span></div></li><li><div><strong>结果交付</strong><span>输出可直接复用的素材包，而不是只有一段模型回答。</span></div></li></ol></section>
+
+      <section id="pipeline" class="reveal"><p class="section-kicker">04 / Request pipeline</p><h2>复杂请求被拆成可检查的步骤，而不是一次黑箱问答。</h2><p>对于“查找某主题的历史素材并推荐可商用组合”这类请求，系统依次完成意图识别、检索、过滤、证据整理、组合建议和结果交付。每一步都有结构化输入与输出，便于定位漏召回、错授权与错误推荐。</p></section>
+
+      <section id="rights" class="reveal"><p class="section-kicker">05 / Rights tracking</p><h2>版权不是备注字段，而是贯穿导入、检索和复用的产品约束。</h2><div class="evidence-grid"><div class="evidence-card"><strong>6</strong><span>核心模块：导入、标注、权利、检索、推荐、报告</span></div><div class="evidence-card"><strong>1</strong><span>统一资源本体</span></div><div class="evidence-card"><strong>100%</strong><span>推荐结果保留来源与权利证据</span></div></div><p>权利信息参与排序与过滤，复用报告记录素材去向，使系统不仅帮助“找到”，也帮助团队解释“为什么可以用”。</p></section>
+
+      <section id="learning" class="reveal"><p class="section-kicker">06 / Reusable learning</p><h2>企业 RAG 产品的护城河，通常在数据关系和证据治理。</h2><p>模型可以更换，向量库可以迁移，但对业务对象、权限边界和证据要求的建模会持续积累。检索体验的上限，取决于数据进入系统时是否已经被正确组织。</p></section>
+      <a class="next-project" href="pearl-ai.html"><div><small>Next case</small><strong>珍珠光泽评估与 3D 商品设计</strong></div><span>→</span></a>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-row"><div><strong>张靖远</strong><span>AI Product Manager · Beijing</span></div><div class="footer-links"><a href="../index.html">首页</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><span>© <span data-year></span></span></div></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

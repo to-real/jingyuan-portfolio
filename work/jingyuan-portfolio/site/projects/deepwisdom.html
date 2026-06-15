@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeepWisdom Agent Evaluation Harness · 张靖远</title>
+  <meta name="description" content="DeepWisdom Agent Evaluation Harness 案例：评测对象、轨迹证据、Rubric、自动检查与长任务恢复机制。">
+  <meta property="og:title" content="DeepWisdom Agent Evaluation Harness">
+  <meta property="og:description" content="把 Agent 的模糊完成标准转换为可测量、可回放、可迭代的评测系统。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#case">跳到案例正文</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="主导航">
+      <a class="brand" href="../index.html"><span class="brand-mark">JY</span><span>张靖远<small>AI Product Manager</small></span></a>
+      <button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" data-menu-toggle>☰</button>
+      <div class="nav-links" data-nav-links><a aria-current="page" href="../index.html#work">项目</a><a href="../index.html#method">方法</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><a class="nav-cta" href="mailto:zjy888@bupt.edu.cn">联系我</a></div>
+    </nav>
+  </header>
+
+  <main id="case">
+    <header class="case-hero">
+      <div class="container">
+        <a class="case-back" href="../index.html#work">返回精选项目</a>
+        <div class="case-title-grid">
+          <h1>Agent Evaluation<br>Harness<span>DeepWisdom · AI 产品 / Agent 评测实习</span></h1>
+          <p class="case-summary">面向多 Agent 与多模态生成场景，把“任务是否完成”从主观判断转换为有数据、证据、评分规则和反馈回路的产品系统。</p>
+        </div>
+        <div class="case-facts">
+          <div class="case-fact"><small>Role</small><strong>Agent 评测实习生</strong></div>
+          <div class="case-fact"><small>Scope</small><strong>评测 Schema · 自动检查 · 恢复机制</strong></div>
+          <div class="case-fact"><small>Period</small><strong>2025.06 - 2025.10</strong></div>
+          <div class="case-fact"><small>Outcome</small><strong>200+ 并行任务</strong></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container case-layout">
+        <aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#model">02 建模</a><a href="#automation">03 自动化</a><a href="#recovery">04 恢复</a><a href="#result">05 结果</a><a href="#learning">06 复用</a></aside>
+        <div class="case-content">
+          <section id="problem" class="reveal">
+            <p class="section-kicker">01 / Problem</p>
+            <h2>不能被重放的“成功”，不是可迭代的成功。</h2>
+            <p class="lead">多 Agent 任务的失败往往不在最终输出，而在某个工具调用、上下文丢失或中间证据不完整。只看结果，无法解释为什么成功或失败。</p>
+            <p>因此评测不能只是一个分数。它必须是一套从任务定义、运行轨迹、证据采集、判定到数据回流的闭环。</p>
+          </section>
+
+          <section id="model" class="reveal">
+            <p class="section-kicker">02 / Product model</p>
+            <h2>用结构化对象，把评测从规则文档变成可运行系统。</h2>
+            <div class="flow" aria-label="Agent 评测流程">
+              <div class="flow-step"><small>01</small><strong>Task / Dataset</strong><span>定义输入、环境与成功条件</span></div>
+              <div class="flow-step"><small>02</small><strong>Run / Trace</strong><span>记录 Agent、工具与中间状态</span></div>
+              <div class="flow-step"><small>03</small><strong>Evidence / Rubric</strong><span>组织证据并映射评分规则</span></div>
+              <div class="flow-step"><small>04</small><strong>Judge / Report</strong><span>生成判定、失败标签与迭代建议</span></div>
+            </div>
+            <p>我定义了从 prompt 输入、工具/Agent 轨迹、中间证据、最终输出到人工复核和模型策略反馈的数据结构，让不同版本能在同一基线上对比。</p>
+          </section>
+
+          <section id="automation" class="reveal">
+            <p class="section-kicker">03 / Automation</p>
+            <h2>自动化只负责稳定规则，人工复核保留复杂判断。</h2>
+            <p>使用 Python 实现图像完整性与语义一致性检查，再接入异步执行和任务队列。对完整性、准确性、一致性、语义质量、指令遵循和格式稳定性等 10+ 维度，使用 JSON Schema 约束 Rubric 结构。</p>
+            <ol class="decision-list">
+              <li><div><strong>先自动检查硬规则</strong><span>缺失页面、尺寸不符、对象不完整等问题直接阻断。</span></div></li>
+              <li><div><strong>再由 Judge 处理语义质量</strong><span>将每个分数绑定证据，避免只输出无法解释的总分。</span></div></li>
+              <li><div><strong>用抽样复核监控偏差</strong><span>人工不再全量检查，但保留对评分规则和 Judge 偏差的控制。</span></div></li>
+            </ol>
+          </section>
+
+          <section id="recovery" class="reveal">
+            <p class="section-kicker">04 / Recovery</p>
+            <h2>长任务的产品质量，体现在失败之后。</h2>
+            <p>我将 Replay、Rollback、Retry 和 Edit 设计为明确产品需求，并对应状态快照、结构化日志、上下文缓存和阶段触发的重试逻辑。这让用户不必因为局部失败而重新执行全部任务。</p>
+          </section>
+
+          <section id="result" class="reveal">
+            <p class="section-kicker">05 / Outcome</p>
+            <h2>从评测工具，进入模型策略与数据迭代。</h2>
+            <div class="evidence-grid">
+              <div class="evidence-card"><strong>30%</strong><span>评测运行耗时缩短</span></div>
+              <div class="evidence-card"><strong>70%</strong><span>人工评测工作量降低</span></div>
+              <div class="evidence-card"><strong>25%</strong><span>长任务成功率提升</span></div>
+              <div class="evidence-card"><strong>60%</strong><span>版本恢复时间缩短</span></div>
+              <div class="evidence-card"><strong>200+</strong><span>并行任务实例</span></div>
+              <div class="evidence-card"><strong>8+</strong><span>诊断文档，支持提示词和 SFT 数据选择</span></div>
+            </div>
+          </section>
+
+          <section id="learning" class="reveal">
+            <p class="section-kicker">06 / Reusable learning</p>
+            <h2>评测的产品价值，是它改变了下一个版本。</h2>
+            <p>评测不应止于“通过/失败”。失败标签、轨迹证据和人工复核应进入提示词迭代、Agent 策略修改和 SFT 数据筛选，形成真正的产品闭环。</p>
+          </section>
+
+          <a class="next-project" href="funloom.html"><div><small>Next case</small><strong>FunloomAI · 自然语言到可玩原型</strong></div><span>→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-row"><div><strong>张靖远</strong><span>AI Product Manager · Beijing</span></div><div class="footer-links"><a href="../index.html">首页</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><span>© <span data-year></span></span></div></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

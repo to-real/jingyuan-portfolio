@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>珍珠光泽评估与 3D 商品设计 · 张靖远</title>
+  <meta name="description" content="珍珠光泽评估与 3D 商品设计案例：连接标准化图像采集、质量分类、瑕疵检测、报告生成和 Web 3D 展示。">
+  <meta property="og:title" content="珍珠光泽评估与 3D 商品设计">
+  <meta property="og:description" content="让视觉 AI 的判断成为可检查、可展示、可支持交易的产品证据。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#case">跳到案例正文</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="主导航"><a class="brand" href="../index.html"><span class="brand-mark">JY</span><span>张靖远<small>AI Product Manager</small></span></a><button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" data-menu-toggle>☰</button><div class="nav-links" data-nav-links><a aria-current="page" href="../index.html#work">项目</a><a href="../index.html#method">方法</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><a class="nav-cta" href="mailto:zjy888@bupt.edu.cn">联系我</a></div></nav></header>
+
+  <main id="case">
+    <header class="case-hero"><div class="container"><a class="case-back" href="../index.html#work">返回精选项目</a><div class="case-title-grid"><h1>珍珠光泽评估与 3D 商品设计<span>视觉 AI 与 3D · 产品及技术负责人</span></h1><p class="case-summary">把主观、低吞吐的人工光泽判断，改造成从标准化采集到质量报告与 3D 商品展示的完整流程，让定价依据可检查、交易表达可理解。</p></div><div class="case-facts"><div class="case-fact"><small>Role</small><strong>产品及技术负责人</strong></div><div class="case-fact"><small>Scope</small><strong>视觉 AI · 报告 · Web 3D</strong></div><div class="case-fact"><small>Period</small><strong>2024.09 - 2025.07</strong></div><div class="case-fact"><small>Copyright</small><strong>2025SR1196543</strong></div></div></div></header>
+
+    <section class="section"><div class="container case-layout"><aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#workflow">02 流程</a><a href="#model">03 模型</a><a href="#explain">04 解释</a><a href="#display">05 展示</a><a href="#learning">06 复用</a></aside><div class="case-content">
+      <section id="problem" class="reveal"><p class="section-kicker">01 / Problem</p><h2>当质量判断无法被解释，价格也很难被信任。</h2><p class="lead">人工光泽评估依赖经验、吞吐有限，不同评估者之间容易出现偏差；线上交易又压缩了实物观察条件，使买家更难理解价格差异。</p><p>产品需要同时服务卖家的评估效率、买家的判断依据和线上展示，而不是只交付一个分类模型。</p></section>
+
+      <section id="workflow" class="reveal"><p class="section-kicker">02 / End-to-end workflow</p><h2>先控制输入，再讨论模型准确率。</h2><div class="flow" aria-label="珍珠质量评估流程"><div class="flow-step"><small>01</small><strong>标准化采集</strong><span>光源、角度、背景、尺度统一</span></div><div class="flow-step"><small>02</small><strong>视觉评估</strong><span>光泽分类与表面瑕疵检测</span></div><div class="flow-step"><small>03</small><strong>质量报告</strong><span>分数、缺陷位置、证据图与说明</span></div><div class="flow-step"><small>04</small><strong>3D 展示</strong><span>商品组合、交互查看与交易支持</span></div></div><p>如果图像采集不稳定，模型输出会把拍摄差异误当成商品差异。标准化采集因此被定义为产品入口，而不是实验室外的附属步骤。</p></section>
+
+      <section id="model" class="reveal"><p class="section-kicker">03 / Technical proposal</p><h2>不同任务使用不同模型，不让一项技术承担全部判断。</h2><ol class="decision-list"><li><div><strong>SVM / Random Forest</strong><span>处理可解释的质量特征与光泽等级分类，便于比较特征贡献和稳定性。</span></div></li><li><div><strong>YOLOv8</strong><span>定位表面瑕疵，为报告保留具体位置与可视证据。</span></div></li><li><div><strong>Blender / WebGL / Three.js</strong><span>连接设计方案、商品组合和浏览器端交互展示。</span></div></li></ol></section>
+
+      <section id="explain" class="reveal"><p class="section-kicker">04 / Explainability</p><h2>报告不是模型分数的排版，而是连接判断与行动的界面。</h2><p>报告同时呈现光泽等级、瑕疵位置、采集条件、关键证据图和解释文本。卖家据此完成商品分级与定价沟通，买家据此理解质量差异，运营人员也能复核异常结果。</p></section>
+
+      <section id="display" class="reveal"><p class="section-kicker">05 / Transaction display</p><h2>从检测延伸到 3D 展示，让评估结果进入真实交易场景。</h2><div class="evidence-grid"><div class="evidence-card"><strong>3</strong><span>核心用户：卖家、买家、平台运营</span></div><div class="evidence-card"><strong>5</strong><span>产品环节：采集、评估、检测、报告、展示</span></div><div class="evidence-card"><strong>1</strong><span>软件著作权</span></div></div><p>Web 3D 不只是视觉效果，而是把珍珠单品、组合设计和质量证据放进同一商品页面，减少线下信息在线上渠道中的损失。</p></section>
+
+      <section id="learning" class="reveal"><p class="section-kicker">06 / Reusable learning</p><h2>垂直 AI 产品的完整性，来自输入标准、模型证据和业务动作的闭环。</h2><p>只有准确率，没有稳定输入和可理解输出，模型很难进入高价值决策。产品经理需要定义的不只是“调用哪个模型”，还包括数据如何产生、证据如何展示、异常如何复核，以及结果最终支持哪一个业务动作。</p></section>
+      <a class="next-project" href="deepwisdom.html"><div><small>Back to first case</small><strong>DeepWisdom Agent Evaluation Harness</strong></div><span>↗</span></a>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-row"><div><strong>张靖远</strong><span>AI Product Manager · Beijing</span></div><div class="footer-links"><a href="../index.html">首页</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><span>© <span data-year></span></span></div></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# 张靖远 · AI 产品经理
+
+本网站展示张靖远的 AI 产品与 Agent 项目经验。
+
+## 核心页面
+- /index.html：首页、精选项目、产品方法、写作与联系方式
+- /projects/deepwisdom.html：Agent Evaluation Harness
+- /projects/funloom.html：AI 游戏生成 SaaS
+- /projects/media-system.html：数字媒体数据集成与管理系统
+- /projects/pearl-ai.html：珍珠光泽评估与 3D 商品设计
+
+## 联系方式
+- Email: zjy888@bupt.edu.cn
+- GitHub: https://github.com/to-real
+- X: https://x.com/Potatoloogs
+
