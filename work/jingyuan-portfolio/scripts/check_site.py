@@ -11,6 +11,22 @@ DEFAULT_SITE = Path(__file__).resolve().parents[1] / "site"
 SITE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else DEFAULT_SITE
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
 FORBIDDEN = ("{{", "}}", "[DATA NEEDED]", "TODO", "TBD", "file://")
+HOMEPAGE_REQUIRED_TEXT = (
+    "你好，我是张靖远。",
+    "模型出错之后，产品怎么把任务接回来？",
+    "这几年，我主要做了四件事。",
+    "我写的东西，大多来自我自己需要弄懂的问题。",
+    "先弄明白，再写下来。",
+    "2027 届 AI 产品经理实习和校招机会",
+)
+PROHIBITED_COPY = (
+    "四种把 AI 变成产品的方式",
+    "我关心的不是“能否生成”",
+    "模型能力会变，产品判断必须可复用",
+    "从模型能力到用户价值的闭环",
+)
+PROJECT_REQUIRED_TEXT = ("问题", "我做了什么", "结果", "现在怎么看")
+HIDDEN_TEXT_TAGS = {"head", "script", "style", "template", "noscript"}
 
 
 class PageParser(HTMLParser):
@@ -20,9 +36,13 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.has_title = False
         self.has_description = False
+        self.text_parts: list[str] = []
+        self.hidden_text_depth = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attr_map = dict(attrs)
+        if tag in HIDDEN_TEXT_TAGS:
+            self.hidden_text_depth += 1
         if tag == "h1":
             self.h1_count += 1
         if tag == "title":
@@ -33,6 +53,18 @@ class PageParser(HTMLParser):
             value = attr_map.get(key)
             if value:
                 self.refs.append((key, value))
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in HIDDEN_TEXT_TAGS:
+            self.hidden_text_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        if self.hidden_text_depth == 0:
+            self.text_parts.append(data)
+
+    @property
+    def visible_text(self) -> str:
+        return " ".join("".join(self.text_parts).split())
 
 
 def resolve_ref(page: Path, ref: str) -> Path | None:
@@ -60,6 +92,7 @@ def main() -> int:
         rel = page.relative_to(SITE)
         parser = PageParser()
         parser.feed(text)
+        visible_text = parser.visible_text
 
         for marker in FORBIDDEN:
             if marker in text:
@@ -72,6 +105,21 @@ def main() -> int:
             errors.append(f"{rel}: missing meta description")
         if parser.h1_count != 1:
             errors.append(f"{rel}: expected one h1, found {parser.h1_count}")
+
+        if rel.as_posix() == "index.html":
+            for phrase in HOMEPAGE_REQUIRED_TEXT:
+                if phrase not in visible_text:
+                    errors.append(f"{rel}: missing required phrase {phrase!r}")
+
+        if page.name != "404.html":
+            for phrase in PROHIBITED_COPY:
+                if phrase in visible_text:
+                    errors.append(f"{rel}: prohibited phrase present {phrase!r}")
+
+        if rel.parts and rel.parts[0] == "projects":
+            for phrase in PROJECT_REQUIRED_TEXT:
+                if phrase not in visible_text:
+                    errors.append(f"{rel}: missing required phrase {phrase!r}")
 
         for attr, ref in parser.refs:
             target = resolve_ref(page, ref)
