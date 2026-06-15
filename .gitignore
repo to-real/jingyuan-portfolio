@@ -2,5 +2,13 @@
 .worktrees/
 __pycache__/
 *.pyc
+.venv/
+node_modules/
 .DS_Store
 Thumbs.db
+
+# This repository tracks the portfolio source and its published output only.
+work/ai-pm-resumes/
+work/Kami/
+outputs/ai-pm-resumes/
+outputs/fonts/
