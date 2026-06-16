@@ -315,6 +315,31 @@ img { max-width: 100%; display: block; }
 .portrait-center span { color: var(--stone); font-size: 12px; }
 .portrait-note { position: relative; color: var(--stone); font-family: var(--serif); font-size: 12px; line-height: 1.6; }
 
+.about-block {
+  max-width: 860px;
+  margin-top: 64px;
+  padding: 34px 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(250, 249, 245, 0.78);
+  box-shadow: var(--shadow);
+}
+.about-block p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+}
+.about-block p + p { margin-top: 12px; }
+.about-block p:first-child {
+  color: var(--blue);
+  font-family: var(--ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .metrics-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -503,6 +528,7 @@ img { max-width: 100%; display: block; }
   .hero-lede { font-size: 18px; }
   .hero-actions { flex-direction: column; }
   .button { width: 100%; }
+  .about-block { margin-top: 42px; padding: 26px 22px; }
   .portrait-placeholder { border-radius: 42% 42% 14px 14px; }
   .metrics-strip { margin-top: 46px; }
   .metric, .metric:not(:first-child) { padding: 20px 14px 20px 0; }
