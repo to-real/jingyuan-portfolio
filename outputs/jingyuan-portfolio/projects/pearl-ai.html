@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,75 @@
 <section class="section"><div class="container case-layout"><aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#workflow">02 我做了什么</a><a href="#model">03 模型</a><a href="#explain">04 解释</a><a href="#display">05 结果</a><a href="#learning">06 现在怎么看</a></aside><div class="case-content">
       <section id="problem" class="reveal"><p class="section-kicker">01 / Problem</p><h2>当质量判断无法被解释，价格也很难被信任。</h2><p class="lead">人工光泽评估依赖经验、吞吐有限，不同评估者之间容易出现偏差；线上交易又压缩了实物观察条件，使买家更难理解价格差异。</p><p>产品需要同时服务卖家的评估效率、买家的判断依据和线上展示，而不是只交付一个分类模型。</p></section>
 
-<section id="workflow" class="reveal"><p class="section-kicker">02 / 我做了什么</p><h2>先控制输入，再讨论模型准确率。</h2><div class="flow" aria-label="珍珠质量评估流程"><div class="flow-step"><small>01</small><strong>标准化采集</strong><span>光源、角度、背景、尺度统一</span></div><div class="flow-step"><small>02</small><strong>视觉评估</strong><span>光泽分类与表面瑕疵检测</span></div><div class="flow-step"><small>03</small><strong>质量报告</strong><span>分数、缺陷位置、证据图与说明</span></div><div class="flow-step"><small>04</small><strong>3D 展示</strong><span>商品组合、交互查看与交易支持</span></div></div><p>如果图像采集不稳定，模型输出会把拍摄差异误当成商品差异。标准化采集因此被定义为产品入口，而不是实验室外的附属步骤。</p></section>
+<section id="workflow" class="reveal"><p class="section-kicker">02 / 我做了什么</p><h2>先控制输入，再讨论模型准确率。</h2><figure class="case-figure"><svg class="case-diagram" width="680" height="330" viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>珍珠光泽评估与 3D 商品设计流程</title>
+<desc>从标准化采集经双模型评估（SVM 分类 + YOLOv8 检测）到质量报告与 3D 展示的完整链路</desc>
+
+<style>
+  .th { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #141413; }
+  .ts { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .th-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #faf9f5; }
+  .ts-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #B4B2A9; }
+  .arr { stroke: #B4B2A9; stroke-width: 1.5; }
+</style>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Row 1: Standardized capture (wide, centered) -->
+<rect x="190" y="35" width="300" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="340" y="55" text-anchor="middle" dominant-baseline="central">标准化采集</text>
+<text class="ts" x="340" y="73" text-anchor="middle" dominant-baseline="central">光源 · 角度 · 背景 · 尺度统一</text>
+
+<!-- Fork from capture -->
+<line x1="340" y1="89" x2="340" y2="112" class="arr"/>
+<circle cx="340" cy="112" r="3" fill="#888780"/>
+<path d="M340 112 L190 112 L190 138" fill="none" class="arr" marker-end="url(#a)"/>
+<path d="M340 112 L490 112 L490 138" fill="none" class="arr" marker-end="url(#a)"/>
+
+<!-- Row 2: Dual-model evaluation -->
+<rect x="80" y="140" width="220" height="60" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="190" y="160" text-anchor="middle" dominant-baseline="central">SVM / Random Forest</text>
+<text class="ts" x="190" y="178" text-anchor="middle" dominant-baseline="central">光泽等级分类 · 可解释特征</text>
+
+<rect x="380" y="140" width="220" height="60" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="490" y="160" text-anchor="middle" dominant-baseline="central">YOLOv8</text>
+<text class="ts" x="490" y="178" text-anchor="middle" dominant-baseline="central">表面瑕疵检测 · 缺陷定位</text>
+
+<!-- Model choice annotations -->
+<text class="ts" x="80" y="157" text-anchor="end" dominant-baseline="central" opacity="0.5">可解释 →</text>
+<text class="ts" x="600" y="157" dominant-baseline="central" opacity="0.5">← 可定位</text>
+
+<!-- Merge from dual models -->
+<path d="M190 202 L190 225 L340 225" fill="none" class="arr"/>
+<path d="M490 202 L490 225 L340 225" fill="none" class="arr"/>
+<circle cx="340" cy="225" r="3" fill="#888780"/>
+
+<!-- Row 3: Report and Display -->
+<line x1="340" y1="225" x2="340" y2="232" class="arr"/>
+
+<!-- Split to Report and 3D Display -->
+<path d="M340 232 L190 232 L190 248" fill="none" class="arr" marker-end="url(#a)"/>
+<path d="M340 232 L490 232 L490 248" fill="none" class="arr" marker-end="url(#a)"/>
+
+<rect x="80" y="250" width="220" height="52" rx="6" fill="#1B365D" stroke="#1B365D" stroke-width="0.5"/>
+<text class="th-inv" x="190" y="270" text-anchor="middle" dominant-baseline="central">质量报告</text>
+<text class="ts-inv" x="190" y="288" text-anchor="middle" dominant-baseline="central">等级 · 缺陷位置 · 证据图 · 说明</text>
+
+<rect x="380" y="250" width="220" height="52" rx="6" fill="#1B365D" stroke="#1B365D" stroke-width="0.5"/>
+<text class="th-inv" x="490" y="270" text-anchor="middle" dominant-baseline="central">3D 商品展示</text>
+<text class="ts-inv" x="490" y="288" text-anchor="middle" dominant-baseline="central">组合设计 · 交互查看 · 交易支持</text>
+
+<!-- Connection between Report and Display -->
+<line x1="302" y1="276" x2="378" y2="276" class="arr" marker-end="url(#a)"/>
+
+<!-- Bottom annotation -->
+<text class="ts" x="340" y="326" text-anchor="middle" dominant-baseline="central" opacity="0.45">从主观判断到可检查、可展示、可支持交易的产品证据</text>
+
+</svg>
+<figcaption>模型选型围绕产品判断：SVM 负责可解释的光泽分类，YOLOv8 负责可定位的瑕疵证据，最后进入报告和展示。</figcaption></figure><p>如果图像采集不稳定，模型输出会把拍摄差异误当成商品差异。标准化采集因此被定义为产品入口，而不是实验室外的附属步骤。</p></section>
 
       <section id="model" class="reveal"><p class="section-kicker">03 / Technical proposal</p><h2>不同任务使用不同模型，不让一项技术承担全部判断。</h2><ol class="decision-list"><li><div><strong>SVM / Random Forest</strong><span>处理可解释的质量特征与光泽等级分类，便于比较特征贡献和稳定性。</span></div></li><li><div><strong>YOLOv8</strong><span>定位表面瑕疵，为报告保留具体位置与可视证据。</span></div></li><li><div><strong>Blender / WebGL / Three.js</strong><span>连接设计方案、商品组合和浏览器端交互展示。</span></div></li></ol></section>
 
@@ -38,3 +106,4 @@
   <script src="../assets/site.js"></script>
 </body>
 </html>
+

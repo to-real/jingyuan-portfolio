@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,90 @@
 <section class="section"><div class="container case-layout"><aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#ontology">02 我做了什么</a><a href="#retrieval">03 检索</a><a href="#pipeline">04 流程</a><a href="#rights">05 结果</a><a href="#learning">06 现在怎么看</a></aside><div class="case-content">
       <section id="problem" class="reveal"><p class="section-kicker">01 / Problem</p><h2>真正丢失的不是文件，而是文件周围的语境。</h2><p class="lead">素材分散时，用户通常还能按文件名找到某个文件，却无法快速回答：它来自哪里、是否能商用、在哪个项目用过、为什么值得复用。</p><p>因此产品目标不是再做一个网盘，而是建立一层可查询的数据关系，让媒体资源从“存储对象”变成“可审计资产”。</p></section>
 
-<section id="ontology" class="reveal"><p class="section-kicker">02 / 我做了什么</p><h2>先统一资源语言，再谈智能检索。</h2><div class="flow" aria-label="媒体资源数据结构"><div class="flow-step"><small>01</small><strong>资源身份</strong><span>类型、来源、主题、标签、版本</span></div><div class="flow-step"><small>02</small><strong>使用语境</strong><span>所属项目、使用位置、更新时间</span></div><div class="flow-step"><small>03</small><strong>权利信息</strong><span>作者、许可、授权范围、到期时间</span></div><div class="flow-step"><small>04</small><strong>关系网络</strong><span>跨项目引用、衍生版本、组合素材</span></div></div><p>这套本体把“素材是什么”“素材怎么用”“素材能否用”拆开建模，避免用一组模糊标签承担所有检索与治理需求。</p></section>
+<section id="ontology" class="reveal"><p class="section-kicker">02 / 我做了什么</p><h2>先统一资源语言，再谈智能检索。</h2><figure class="case-figure"><svg class="case-diagram" width="680" height="370" viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>媒体资源本体与检索链路</title>
+<desc>资源本体四维度（身份、语境、权利、关系）围绕中心资源实体，底部展示证据优先的检索链路</desc>
+
+<style>
+  .th { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #141413; }
+  .ts { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .th-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #faf9f5; }
+  .ts-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #B4B2A9; }
+  .arr { stroke: #B4B2A9; stroke-width: 1.5; }
+</style>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Central entity -->
+<rect x="270" y="92" width="140" height="46" rx="6" fill="#1B365D" stroke="#1B365D" stroke-width="0.5"/>
+<text class="th-inv" x="340" y="116" text-anchor="middle" dominant-baseline="central">媒体资源</text>
+
+<!-- 4 dimension clusters -->
+<!-- Top-left: 资源身份 -->
+<rect x="45" y="25" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="137" y="45" text-anchor="middle" dominant-baseline="central">资源身份</text>
+<text class="ts" x="137" y="63" text-anchor="middle" dominant-baseline="central">类型 · 来源 · 主题 · 版本</text>
+
+<!-- Top-right: 使用语境 -->
+<rect x="450" y="25" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="542" y="45" text-anchor="middle" dominant-baseline="central">使用语境</text>
+<text class="ts" x="542" y="63" text-anchor="middle" dominant-baseline="central">所属项目 · 位置 · 更新时间</text>
+
+<!-- Bottom-left: 权利信息 -->
+<rect x="45" y="155" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="137" y="175" text-anchor="middle" dominant-baseline="central">权利信息</text>
+<text class="ts" x="137" y="193" text-anchor="middle" dominant-baseline="central">作者 · 许可 · 授权范围 · 到期</text>
+
+<!-- Bottom-right: 关系网络 -->
+<rect x="450" y="155" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="542" y="175" text-anchor="middle" dominant-baseline="central">关系网络</text>
+<text class="ts" x="542" y="193" text-anchor="middle" dominant-baseline="central">跨项目引用 · 衍生 · 组合</text>
+
+<!-- Connection lines: center to 4 clusters -->
+<line x1="280" y1="105" x2="232" y2="72" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="400" y1="105" x2="448" y2="72" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="280" y1="128" x2="232" y2="160" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="400" y1="128" x2="448" y2="160" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+
+<!-- Cross connections (lighter, showing relationships between dimensions) -->
+<line x1="230" y1="50" x2="450" y2="50" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.2"/>
+<line x1="230" y1="180" x2="450" y2="180" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.2"/>
+
+<!-- Divider -->
+<line x1="55" y1="240" x2="625" y2="240" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.3"/>
+
+<!-- Retrieval pipeline (bottom) -->
+<text class="ts" x="340" y="260" text-anchor="middle" dominant-baseline="central" opacity="0.55">检索链路</text>
+
+<rect x="32" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="86" y="294" text-anchor="middle" dominant-baseline="central">意图识别</text>
+
+<rect x="164" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="218" y="294" text-anchor="middle" dominant-baseline="central">多维检索</text>
+
+<rect x="296" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="350" y="294" text-anchor="middle" dominant-baseline="central">权利过滤</text>
+
+<rect x="428" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="482" y="294" text-anchor="middle" dominant-baseline="central">证据组织</text>
+
+<rect x="560" y="275" width="88" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="604" y="294" text-anchor="middle" dominant-baseline="central">交付</text>
+
+<!-- Retrieval arrows -->
+<line x1="142" y1="293" x2="162" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="274" y1="293" x2="294" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="406" y1="293" x2="426" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="538" y1="293" x2="558" y2="293" class="arr" marker-end="url(#a)"/>
+
+<!-- Bottom annotation -->
+<text class="ts" x="340" y="340" text-anchor="middle" dominant-baseline="central" opacity="0.45">每一步输出均保留来源链接、授权说明与推荐依据</text>
+
+</svg>
+<figcaption>上半区回答资源语境怎么建，下半区回答请求如何带着权利和证据交付，而不是只返回一个文件名。</figcaption></figure><p>这套本体把“素材是什么”“素材怎么用”“素材能否用”拆开建模，避免用一组模糊标签承担所有检索与治理需求。</p></section>
 
       <section id="retrieval" class="reveal"><p class="section-kicker">03 / Evidence-first retrieval</p><h2>RAG 的价值不是生成摘要，而是缩短从意图到可信资源的距离。</h2><ol class="decision-list"><li><div><strong>检索</strong><span>根据主题、媒介类型、项目语境和权利要求召回候选资源。</span></div></li><li><div><strong>过滤</strong><span>剔除许可冲突、版本过期和与当前用途不匹配的资源。</span></div></li><li><div><strong>证据组织</strong><span>保留来源链接、授权说明、历史用途和推荐依据。</span></div></li><li><div><strong>结果交付</strong><span>输出可直接复用的素材包，而不是只有一段模型回答。</span></div></li></ol></section>
 
@@ -38,3 +121,4 @@
   <script src="../assets/site.js"></script>
 </body>
 </html>
+
