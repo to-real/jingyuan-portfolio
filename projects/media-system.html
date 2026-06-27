@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数字媒体数据集成与管理系统 · 张靖远</title>
+  <meta name="description" content="数字媒体数据集成与管理系统案例：以媒体资源本体、版权溯源、RAG 检索和证据链，把分散文件转化为可审计的数据资产。">
+  <meta property="og:title" content="数字媒体数据集成与管理系统">
+  <meta property="og:description" content="从散落文件到可检索、可追溯、可复用的媒体数据资产。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#case">跳到案例正文</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="主导航"><a class="brand" href="../index.html"><span class="brand-mark">JY</span><span>张靖远<small>AI Product Manager</small></span></a><button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" data-menu-toggle>☰</button><div class="nav-links" data-nav-links><a aria-current="page" href="../index.html#work">项目</a><a href="../index.html#method">方法</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><a class="nav-cta" href="mailto:zjy888@bupt.edu.cn">联系我</a></div></nav></header>
+
+  <main id="case">
+    <header class="case-hero"><div class="container"><a class="case-back" href="../index.html#work">返回精选项目</a><div class="case-title-grid"><h1>数字媒体数据集成与管理系统<span>RAG 与数据产品 · 独立产品设计</span></h1><p class="case-summary">把散落在文件夹中的视觉、音频、文本和 3D 素材，组织成具备来源、版权、用途与项目关系的数据资产，并让检索结果始终带着证据回来。</p></div><div class="case-facts"><div class="case-fact"><small>Role</small><strong>产品设计 / 独立著作权人</strong></div><div class="case-fact"><small>Scope</small><strong>数据本体 · RAG · 权利追踪</strong></div><div class="case-fact"><small>Registered</small><strong>2025.01</strong></div><div class="case-fact"><small>Copyright</small><strong>2025SR0148410</strong></div></div></div></header>
+
+<section class="section"><div class="container case-layout"><aside class="case-toc" aria-label="页内导航"><p>Case index</p><a href="#problem">01 问题</a><a href="#ontology">02 我做了什么</a><a href="#retrieval">03 检索</a><a href="#pipeline">04 流程</a><a href="#rights">05 结果</a><a href="#learning">06 现在怎么看</a></aside><div class="case-content">
+      <section id="problem" class="reveal"><p class="section-kicker">01 / Problem</p><h2>真正丢失的不是文件，而是文件周围的语境。</h2><p class="lead">素材分散时，用户通常还能按文件名找到某个文件，却无法快速回答：它来自哪里、是否能商用、在哪个项目用过、为什么值得复用。</p><p>因此产品目标不是再做一个网盘，而是建立一层可查询的数据关系，让媒体资源从“存储对象”变成“可审计资产”。</p></section>
+
+<section id="ontology" class="reveal"><p class="section-kicker">02 / 我做了什么</p><h2>先统一资源语言，再谈智能检索。</h2><figure class="case-figure"><svg class="case-diagram" width="680" height="370" viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>媒体资源本体与检索链路</title>
+<desc>资源本体四维度（身份、语境、权利、关系）围绕中心资源实体，底部展示证据优先的检索链路</desc>
+
+<style>
+  .th { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #141413; }
+  .ts { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+  .th-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 14px; font-weight: 500; fill: #faf9f5; }
+  .ts-inv { font-family: Charter, Georgia, "Noto Serif CJK SC", "Songti SC", serif; font-size: 12px; font-weight: 400; fill: #B4B2A9; }
+  .arr { stroke: #B4B2A9; stroke-width: 1.5; }
+</style>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Central entity -->
+<rect x="270" y="92" width="140" height="46" rx="6" fill="#1B365D" stroke="#1B365D" stroke-width="0.5"/>
+<text class="th-inv" x="340" y="116" text-anchor="middle" dominant-baseline="central">媒体资源</text>
+
+<!-- 4 dimension clusters -->
+<!-- Top-left: 资源身份 -->
+<rect x="45" y="25" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="137" y="45" text-anchor="middle" dominant-baseline="central">资源身份</text>
+<text class="ts" x="137" y="63" text-anchor="middle" dominant-baseline="central">类型 · 来源 · 主题 · 版本</text>
+
+<!-- Top-right: 使用语境 -->
+<rect x="450" y="25" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="542" y="45" text-anchor="middle" dominant-baseline="central">使用语境</text>
+<text class="ts" x="542" y="63" text-anchor="middle" dominant-baseline="central">所属项目 · 位置 · 更新时间</text>
+
+<!-- Bottom-left: 权利信息 -->
+<rect x="45" y="155" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="137" y="175" text-anchor="middle" dominant-baseline="central">权利信息</text>
+<text class="ts" x="137" y="193" text-anchor="middle" dominant-baseline="central">作者 · 许可 · 授权范围 · 到期</text>
+
+<!-- Bottom-right: 关系网络 -->
+<rect x="450" y="155" width="185" height="52" rx="6" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="th" x="542" y="175" text-anchor="middle" dominant-baseline="central">关系网络</text>
+<text class="ts" x="542" y="193" text-anchor="middle" dominant-baseline="central">跨项目引用 · 衍生 · 组合</text>
+
+<!-- Connection lines: center to 4 clusters -->
+<line x1="280" y1="105" x2="232" y2="72" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="400" y1="105" x2="448" y2="72" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="280" y1="128" x2="232" y2="160" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+<line x1="400" y1="128" x2="448" y2="160" stroke="#B4B2A9" stroke-width="0.5" opacity="0.6"/>
+
+<!-- Cross connections (lighter, showing relationships between dimensions) -->
+<line x1="230" y1="50" x2="450" y2="50" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.2"/>
+<line x1="230" y1="180" x2="450" y2="180" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.2"/>
+
+<!-- Divider -->
+<line x1="55" y1="240" x2="625" y2="240" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.3"/>
+
+<!-- Retrieval pipeline (bottom) -->
+<text class="ts" x="340" y="260" text-anchor="middle" dominant-baseline="central" opacity="0.55">检索链路</text>
+
+<rect x="32" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="86" y="294" text-anchor="middle" dominant-baseline="central">意图识别</text>
+
+<rect x="164" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="218" y="294" text-anchor="middle" dominant-baseline="central">多维检索</text>
+
+<rect x="296" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="350" y="294" text-anchor="middle" dominant-baseline="central">权利过滤</text>
+
+<rect x="428" y="275" width="108" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="482" y="294" text-anchor="middle" dominant-baseline="central">证据组织</text>
+
+<rect x="560" y="275" width="88" height="36" rx="4" fill="#e8e6dc" stroke="#B4B2A9" stroke-width="0.5"/>
+<text class="ts" x="604" y="294" text-anchor="middle" dominant-baseline="central">交付</text>
+
+<!-- Retrieval arrows -->
+<line x1="142" y1="293" x2="162" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="274" y1="293" x2="294" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="406" y1="293" x2="426" y2="293" class="arr" marker-end="url(#a)"/>
+<line x1="538" y1="293" x2="558" y2="293" class="arr" marker-end="url(#a)"/>
+
+<!-- Bottom annotation -->
+<text class="ts" x="340" y="340" text-anchor="middle" dominant-baseline="central" opacity="0.45">每一步输出均保留来源链接、授权说明与推荐依据</text>
+
+</svg>
+<figcaption>上半区回答资源语境怎么建，下半区回答请求如何带着权利和证据交付，而不是只返回一个文件名。</figcaption></figure><p>这套本体把“素材是什么”“素材怎么用”“素材能否用”拆开建模，避免用一组模糊标签承担所有检索与治理需求。</p></section>
+
+      <section id="retrieval" class="reveal"><p class="section-kicker">03 / Evidence-first retrieval</p><h2>RAG 的价值不是生成摘要，而是缩短从意图到可信资源的距离。</h2><ol class="decision-list"><li><div><strong>检索</strong><span>根据主题、媒介类型、项目语境和权利要求召回候选资源。</span></div></li><li><div><strong>过滤</strong><span>剔除许可冲突、版本过期和与当前用途不匹配的资源。</span></div></li><li><div><strong>证据组织</strong><span>保留来源链接、授权说明、历史用途和推荐依据。</span></div></li><li><div><strong>结果交付</strong><span>输出可直接复用的素材包，而不是只有一段模型回答。</span></div></li></ol></section>
+
+      <section id="pipeline" class="reveal"><p class="section-kicker">04 / Request pipeline</p><h2>复杂请求被拆成可检查的步骤，而不是一次黑箱问答。</h2><p>对于“查找某主题的历史素材并推荐可商用组合”这类请求，系统依次完成意图识别、检索、过滤、证据整理、组合建议和结果交付。每一步都有结构化输入与输出，便于定位漏召回、错授权与错误推荐。</p></section>
+
+      <section id="rights" class="reveal"><p class="section-kicker">05 / Rights tracking</p><h2>版权不是备注字段，而是贯穿导入、检索和复用的产品约束。</h2><div class="evidence-grid"><div class="evidence-card"><strong>6</strong><span>核心模块：导入、标注、权利、检索、推荐、报告</span></div><div class="evidence-card"><strong>1</strong><span>统一资源本体</span></div><div class="evidence-card"><strong>100%</strong><span>推荐结果保留来源与权利证据</span></div></div><p>权利信息参与排序与过滤，复用报告记录素材去向，使系统不仅帮助“找到”，也帮助团队解释“为什么可以用”。</p></section>
+
+<section id="learning" class="reveal"><p class="section-kicker">06 / 现在怎么看</p><h2>企业 RAG 产品的护城河，通常在数据关系和证据治理。</h2><p>模型可以更换，向量库可以迁移，但对业务对象、权限边界和证据要求的建模会持续积累。检索体验的上限，取决于数据进入系统时是否已经被正确组织。</p></section>
+      <a class="next-project" href="pearl-ai.html"><div><small>Next case</small><strong>珍珠光泽评估与 3D 商品设计</strong></div><span>→</span></a>
+    </div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-row"><div><strong>张靖远</strong><span>AI Product Manager · Beijing</span></div><div class="footer-links"><a href="../index.html">首页</a><a href="../assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>简历</a><span>© <span data-year></span></span></div></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
+
