@@ -412,6 +412,23 @@ img { max-width: 100%; display: block; }
 .note-list li { display: grid; grid-template-columns: 120px 1fr; gap: 22px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .note-list time, .note-list .label { color: var(--blue); font: 500 11px/1.5 var(--mono); text-transform: uppercase; }
 .note-list strong { display: block; margin-bottom: 5px; font-family: var(--serif); font-size: 18px; font-weight: 500; }
+.note-list strong a {
+  text-decoration: underline;
+  text-decoration-color: #b7b5ad;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.note-list strong a:hover,
+.note-list strong a:focus-visible {
+  color: var(--blue);
+  text-decoration-color: var(--blue);
+}
+.note-list strong a:focus-visible {
+  outline: 2px solid var(--blue-tint);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 .note-list p { margin: 0; color: var(--olive); font-size: 13px; line-height: 1.65; }
 
 .contact-panel {
