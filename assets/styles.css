@@ -351,117 +351,7 @@ img { max-width: 100%; display: block; }
 .portrait-center span { color: var(--stone); font-size: 12px; }
 .portrait-note { position: relative; color: var(--stone); font-family: var(--serif); font-size: 12px; line-height: 1.6; }
 
-.deepwisdom-highlight {
-  margin-top: 56px;
-  padding: 24px 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(360px, 0.9fr);
-  gap: 36px;
-  align-items: center;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.deepwisdom-title {
-  display: block;
-  color: var(--blue);
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 600;
-}
-.deepwisdom-copy p {
-  margin: 7px 0 0;
-  color: var(--olive);
-  font-size: 13px;
-  line-height: 1.65;
-}
-.deepwisdom-link {
-  display: inline-block;
-  margin-top: 9px;
-  color: var(--blue);
-  font: 500 11px/1.5 var(--mono);
-  text-decoration: underline;
-  text-decoration-color: #9ba7b6;
-  text-underline-offset: 0.3em;
-}
-.deepwisdom-link:hover,
-.deepwisdom-link:focus-visible {
-  color: var(--blue-light);
-  text-decoration-color: var(--blue-light);
-}
-.deepwisdom-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.deepwisdom-stat {
-  min-width: 0;
-  padding: 4px 18px;
-  border-left: 1px solid var(--line);
-}
-.deepwisdom-stat strong {
-  display: block;
-  color: var(--blue);
-  font-family: var(--serif);
-  font-size: clamp(25px, 2.5vw, 34px);
-  font-weight: 600;
-  line-height: 1;
-}
-.deepwisdom-stat span {
-  display: block;
-  margin-top: 7px;
-  color: var(--stone);
-  font-size: 11px;
-  line-height: 1.4;
-}
-
-.capability-section {
-  padding: 72px 0;
-  border-top: 1px solid var(--line-soft);
-}
-.capability-panel {
-  padding: 32px;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--blue);
-  border-radius: 8px;
-  background: var(--ivory);
-  box-shadow: 0 0 0 1px var(--line-soft);
-}
-.capability-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-}
-.capability-group { min-width: 0; padding-right: 32px; }
-.capability-group + .capability-group {
-  padding-right: 0;
-  padding-left: 32px;
-  border-left: 1px solid var(--line);
-}
-.capability-label {
-  display: block;
-  color: var(--blue);
-  font: 500 11px/1.5 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.capability-group p {
-  margin: 8px 0 0;
-  color: var(--ink-soft);
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.65;
-}
-.capability-about {
-  margin: 24px 0 0;
-  padding-top: 20px;
-  color: var(--olive);
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.7;
-  border-top: 1px solid var(--line);
-}
-
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-#deepwisdom-case { scroll-margin-top: 96px; }
 .project-card {
   position: relative;
   min-height: 430px;
@@ -622,18 +512,6 @@ img { max-width: 100%; display: block; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(.22,1,.36,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-@media (max-width: 1024px) {
-  .deepwisdom-highlight { grid-template-columns: 1fr; gap: 20px; }
-  .deepwisdom-metrics { max-width: 520px; }
-  .capability-grid { grid-template-columns: 1fr; gap: 24px; }
-  .capability-group { padding-right: 0; }
-  .capability-group + .capability-group {
-    padding: 24px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-}
-
 @media (max-width: 920px) {
   .nav-shell { width: min(calc(100% - 32px), var(--max)); }
   .menu-toggle { display: grid; place-items: center; }
@@ -688,14 +566,6 @@ img { max-width: 100%; display: block; }
   .hero-lede { font-size: 18px; }
   .hero-actions { flex-direction: column; }
   .hero-social-links { gap: 12px 18px; }
-  .deepwisdom-highlight { margin-top: 42px; padding: 20px 0; }
-  .deepwisdom-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .deepwisdom-stat { padding: 4px 10px; }
-  .deepwisdom-stat:first-child { border-left: 0; padding-left: 0; }
-  .deepwisdom-stat strong { font-size: 24px; }
-  .capability-section { padding: 56px 0; }
-  .capability-panel { padding: 24px 22px; }
-  .capability-group p { font-size: 15px; }
   .button { width: 100%; }
   .portrait-placeholder { border-radius: 42% 42% 14px 14px; }
   .project-card { min-height: 390px; padding: 23px; }

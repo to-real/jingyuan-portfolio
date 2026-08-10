@@ -14,10 +14,7 @@ function countIn(text, literal) {
 }
 
 const heroStart = html.indexOf('<section class="hero">');
-const capabilityStart = html.indexOf('<section class="capability-section"');
-const hero = capabilityStart > heroStart
-  ? html.slice(heroStart, capabilityStart)
-  : html.slice(heroStart, html.indexOf('<section class="section" id="work">'));
+const hero = html.slice(heroStart, html.indexOf('<section class="section" id="work">'));
 
 test("hero states the evergreen recruiting status and identity hierarchy", () => {
   assert.match(hero, /实习与校招机会开放 · 2027 届 · 北京/);
@@ -41,48 +38,37 @@ test("hero keeps two primary actions and exposes GitHub and X as text links", ()
   assert.equal(countIn(hero, 'class="button '), 2);
 });
 
-test("DeepWisdom highlight states personal scope and shows each metric once", () => {
-  assert.match(hero, /DeepWisdom · Agent Evaluation Harness/);
-  assert.match(hero, /参与评测系统建设，具体负责评测 Schema、自动检查与长任务恢复机制。/);
-  assert.match(hero, /href="#deepwisdom-case"/);
-  for (const metric of ["200+", "70%", "25%"]) {
-    assert.equal(countIn(hero, metric), 1, `${metric} should appear once in the hero`);
-  }
-});
-
-test("DeepWisdom case link targets the unique first project card and clears the sticky header", () => {
-  assert.equal(countIn(html, 'id="deepwisdom-case"'), 1);
+test("homepage omits the redundant evidence strips and keeps the selected work intact", () => {
+  assert.doesNotMatch(html, /class="deepwisdom-highlight/);
+  assert.doesNotMatch(html, /class="capability-section/);
+  assert.doesNotMatch(html, /id="deepwisdom-case"/);
   assert.match(
     html,
-    /<a class="project-card reveal" data-index="01" id="deepwisdom-case" href="projects\/deepwisdom\.html">/
+    /<a class="project-card reveal" data-index="01" href="projects\/deepwisdom\.html">/
   );
-  assert.doesNotMatch(hero, /id="deepwisdom-case"/);
-  assert.match(css, /#deepwisdom-case\s*{[^}]*scroll-margin-top:\s*96px/s);
-});
 
-test("capability section replaces the old about and global metrics blocks", () => {
-  assert.match(html, /class="capability-section"/);
-  assert.match(html, /产品能力/);
-  assert.match(html, /Agent 评测系统 · Harness Engineering · PRD · 用户研究/);
-  assert.match(html, /实现能力/);
-  assert.match(html, /Python · RAG · JSON Schema · Three\.js · 视觉 AI/);
-  assert.match(html, /北邮数字媒体技术 2027 届。从代码转向产品，更关心“该不该做”和“做完如何验收”。持续做开源工具和技术写作。/);
-  assert.doesNotMatch(html, /class="about-block/);
-  assert.doesNotMatch(html, /class="metrics-strip/);
-});
-
-test("desktop CSS defines the approved hero and evidence components", () => {
   for (const selector of [
-    ".hero-role",
-    ".hero-social-links",
     ".deepwisdom-highlight",
+    ".deepwisdom-title",
+    ".deepwisdom-copy",
+    ".deepwisdom-link",
     ".deepwisdom-metrics",
     ".deepwisdom-stat",
     ".capability-section",
     ".capability-panel",
     ".capability-grid",
+    ".capability-group",
+    ".capability-label",
     ".capability-about"
   ]) {
+    assert.doesNotMatch(css, new RegExp(`\\${selector}\\b`), `${selector} should be removed`);
+  }
+  assert.doesNotMatch(css, /#deepwisdom-case\b/);
+  assert.doesNotMatch(css, /@media \(max-width: 1024px\)/);
+});
+
+test("desktop CSS keeps the approved hero hierarchy and social links", () => {
+  for (const selector of [".hero-role", ".hero-social-links"]) {
     assert.match(css, new RegExp(`\\${selector}\\b`), `${selector} should be styled`);
   }
   assert.match(css, /\.hero-role strong\s*{[^}]*font-size:\s*22px/s);
@@ -90,22 +76,11 @@ test("desktop CSS defines the approved hero and evidence components", () => {
 });
 
 test("responsive CSS covers tablet and mobile without dead hero selectors", () => {
-  const evidenceTabletStart = css.indexOf("@media (max-width: 1024px)");
-  const tabletStart = css.indexOf("@media (max-width: 920px)");
   const mobileStart = css.indexOf("@media (max-width: 560px)");
   const reducedMotionStart = css.indexOf("@media (prefers-reduced-motion: reduce)");
-  const evidenceTablet = css.slice(evidenceTabletStart, tabletStart);
-  const tablet = css.slice(tabletStart, mobileStart);
   const mobile = css.slice(mobileStart, reducedMotionStart);
 
-  assert.ok(evidenceTabletStart >= 0, "the evidence components need a 1024px tablet breakpoint");
-  assert.match(evidenceTablet, /\.deepwisdom-highlight\s*{[^}]*grid-template-columns:\s*1fr/s);
-  assert.match(evidenceTablet, /\.capability-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
-  assert.doesNotMatch(tablet, /\.deepwisdom-highlight\b/);
-  assert.doesNotMatch(tablet, /\.capability-grid\b/);
   assert.match(mobile, /\.hero-role\s*{[^}]*flex-wrap:\s*wrap/s);
-  assert.match(mobile, /\.deepwisdom-metrics\s*{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/s);
-  assert.match(mobile, /\.capability-panel\s*{[^}]*padding:\s*24px 22px/s);
 
   assert.doesNotMatch(css, /\.about-block\b/);
   assert.doesNotMatch(css, /\.metrics-strip\b/);
