@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#f5f4ed">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/styles.css?v=20260809-2">
+  <link rel="stylesheet" href="assets/styles.css?v=20260810-hero">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -36,14 +36,18 @@
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
-          <div>
-            <p class="hero-eyebrow"><span class="status-dot"></span>北京 · 2027 届 · AI 产品 / Agent 方向</p>
-            <h1>张靖远<span>AI 产品经理 · Agent 评测与产品系统</span></h1>
-            <p class="hero-lede">我关注的不是 AI 能不能生成，而是生成之后怎么验收、怎么改、坏了怎么恢复。过去两年做了四个项目，都在拆这件事。
-            </p>
+          <div class="hero-copy">
+            <p class="hero-eyebrow"><span class="status-dot"></span>实习与校招机会开放 · 2027 届 · 北京</p>
+            <h1>张靖远</h1>
+            <p class="hero-role"><strong>AI 产品经理</strong><span>/ AI Builder</span></p>
+            <p class="hero-lede">做过 4 个从问题定义到验收指标的 AI 产品项目。关注的不是 AI 能不能生成，而是生成之后如何验收、修改，以及失败后如何恢复。</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#work">查看精选项目 <span aria-hidden="true">↓</span></a>
               <a class="button button-secondary" href="assets/Zhang_Jingyuan_AI_Product_Manager_CN.pdf" download>下载中文简历</a>
+            </div>
+            <div class="hero-social-links" aria-label="外部展示入口">
+              <a href="https://github.com/to-real" target="_blank" rel="noopener noreferrer">GitHub @to-real <span aria-hidden="true">↓</span></a>
+              <a href="https://x.com/Potatoloogs" target="_blank" rel="noopener noreferrer">X @Potatoloogs <span aria-hidden="true">↓</span></a>
             </div>
           </div>
           <aside class="portrait-placeholder portrait-photo" aria-label="张靖远漫画头像">
@@ -51,18 +55,35 @@
           </aside>
         </div>
 
-        <div class="about-block reveal" aria-label="关于张靖远">
-          <p>北邮数字媒体技术，2027 届。</p>
-          <p>本科前两年写代码、做 Unity 项目、参加比赛。后来发现我更想弄清楚的不是「怎么实现」，而是「该不该做」和「做完了怎么验收」。于是转向产品。</p>
-          <p>曾在 DeepWisdom 参与 Agent Evaluation Harness 与长任务恢复机制建设，目前持续研究 Agent 评测、Harness Engineering 与模型策略。业余做开源项目（Agent 架构 Notebook）和技术写作（评测方法论、LLM 记忆系统分析）。也在给 hanniman 的 AI 日报当志愿编辑，练对信息密度的判断。</p>
-          <p>在找 AI 产品方向的实习或校招机会。Agent、评测、生成式应用都是我想深入的方向。</p>
+        <div class="deepwisdom-highlight reveal" aria-label="DeepWisdom 核心经历">
+          <div class="deepwisdom-copy">
+            <strong class="deepwisdom-title">DeepWisdom · Agent Evaluation Harness</strong>
+            <p>参与评测系统建设，具体负责评测 Schema、自动检查与长任务恢复机制。</p>
+            <a class="deepwisdom-link" href="projects/deepwisdom.html">查看核心案例 <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="deepwisdom-metrics" aria-label="DeepWisdom 关键成果">
+            <div class="deepwisdom-stat"><strong>200+</strong><span>并行任务</span></div>
+            <div class="deepwisdom-stat"><strong>70%</strong><span>工作量降低</span></div>
+            <div class="deepwisdom-stat"><strong>25%</strong><span>成功率提升</span></div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="metrics-strip" aria-label="关键成果">
-          <div class="metric"><strong>200+</strong><span>并行 Agent 评测任务</span></div>
-          <div class="metric"><strong>70%</strong><span>人工评测工作量降低</span></div>
-          <div class="metric"><strong>23%→61%</strong><span>AI SaaS 新用户 7 日留存</span></div>
-          <div class="metric"><strong>2 项</strong><span>软件著作权</span></div>
+    <section class="capability-section" aria-label="能力与背景">
+      <div class="container">
+        <div class="capability-panel reveal">
+          <div class="capability-grid">
+            <div class="capability-group">
+              <strong class="capability-label">产品能力</strong>
+              <p>Agent 评测系统 · Harness Engineering · PRD · 用户研究</p>
+            </div>
+            <div class="capability-group">
+              <strong class="capability-label">实现能力</strong>
+              <p>Python · RAG · JSON Schema · Three.js · 视觉 AI</p>
+            </div>
+          </div>
+          <p class="capability-about">北邮数字媒体技术 2027 届。从代码转向产品，更关心“该不该做”和“做完如何验收”。持续做开源工具和技术写作。</p>
         </div>
       </div>
     </section>
