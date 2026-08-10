@@ -59,3 +59,21 @@ test("capability section replaces the old about and global metrics blocks", () =
   assert.doesNotMatch(html, /class="about-block/);
   assert.doesNotMatch(html, /class="metrics-strip/);
 });
+
+test("desktop CSS defines the approved hero and evidence components", () => {
+  for (const selector of [
+    ".hero-role",
+    ".hero-social-links",
+    ".deepwisdom-highlight",
+    ".deepwisdom-metrics",
+    ".deepwisdom-stat",
+    ".capability-section",
+    ".capability-panel",
+    ".capability-grid",
+    ".capability-about"
+  ]) {
+    assert.match(css, new RegExp(`\\${selector}\\b`), `${selector} should be styled`);
+  }
+  assert.match(css, /\.hero-role strong\s*{[^}]*font-size:\s*22px/s);
+  assert.match(css, /\.hero-role span\s*{[^}]*font-size:\s*16px[^}]*color:\s*#52657e/s);
+});
