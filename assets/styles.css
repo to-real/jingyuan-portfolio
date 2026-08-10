@@ -645,9 +645,15 @@ img { max-width: 100%; display: block; }
   .hero { min-height: auto; padding: 72px 0; }
   .hero-grid, .case-title-grid { grid-template-columns: 1fr; gap: 56px; }
   .portrait-placeholder { max-width: 480px; width: 100%; margin: 0 auto; }
-  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
-  .metric:nth-child(2) { border-right: 0; }
-  .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .deepwisdom-highlight { grid-template-columns: 1fr; gap: 20px; }
+  .deepwisdom-metrics { max-width: 520px; }
+  .capability-grid { grid-template-columns: 1fr; gap: 24px; }
+  .capability-group { padding-right: 0; }
+  .capability-group + .capability-group {
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
   .project-grid { grid-template-columns: 1fr; }
   .method-grid { grid-template-columns: 1fr; }
   .method, .method:not(:nth-child(3n+1)) { padding: 26px 0; border-left: 0; }
@@ -672,15 +678,22 @@ img { max-width: 100%; display: block; }
   .hero { padding: 58px 0 56px; }
   .hero-grid { gap: 44px; }
   .hero h1 { font-size: clamp(58px, 20vw, 82px); }
-  .hero h1 span { margin-top: 18px; font-size: 18px; }
+  .hero-role { margin-top: 18px; flex-wrap: wrap; gap: 6px; }
+  .hero-role strong { font-size: 18px; }
+  .hero-role span { font-size: 15px; }
   .hero-lede { font-size: 18px; }
   .hero-actions { flex-direction: column; }
+  .hero-social-links { gap: 12px 18px; }
+  .deepwisdom-highlight { margin-top: 42px; padding: 20px 0; }
+  .deepwisdom-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .deepwisdom-stat { padding: 4px 10px; }
+  .deepwisdom-stat:first-child { border-left: 0; padding-left: 0; }
+  .deepwisdom-stat strong { font-size: 24px; }
+  .capability-section { padding: 56px 0; }
+  .capability-panel { padding: 24px 22px; }
+  .capability-group p { font-size: 15px; }
   .button { width: 100%; }
-  .about-block { margin-top: 42px; padding: 26px 22px; }
   .portrait-placeholder { border-radius: 42% 42% 14px 14px; }
-  .metrics-strip { margin-top: 46px; }
-  .metric, .metric:not(:first-child) { padding: 20px 14px 20px 0; }
-  .metric:nth-child(even) { padding-left: 14px; }
   .project-card { min-height: 390px; padding: 23px; }
   .project-card h3 { margin-top: 42px; font-size: 32px; }
   .contact-panel { padding: 30px 24px; }

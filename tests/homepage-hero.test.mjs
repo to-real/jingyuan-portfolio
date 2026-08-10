@@ -77,3 +77,21 @@ test("desktop CSS defines the approved hero and evidence components", () => {
   assert.match(css, /\.hero-role strong\s*{[^}]*font-size:\s*22px/s);
   assert.match(css, /\.hero-role span\s*{[^}]*font-size:\s*16px[^}]*color:\s*#52657e/s);
 });
+
+test("responsive CSS covers tablet and mobile without dead hero selectors", () => {
+  const tabletStart = css.indexOf("@media (max-width: 920px)");
+  const mobileStart = css.indexOf("@media (max-width: 560px)");
+  const reducedMotionStart = css.indexOf("@media (prefers-reduced-motion: reduce)");
+  const tablet = css.slice(tabletStart, mobileStart);
+  const mobile = css.slice(mobileStart, reducedMotionStart);
+
+  assert.match(tablet, /\.deepwisdom-highlight\s*{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(tablet, /\.capability-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(mobile, /\.hero-role\s*{[^}]*flex-wrap:\s*wrap/s);
+  assert.match(mobile, /\.deepwisdom-metrics\s*{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/s);
+  assert.match(mobile, /\.capability-panel\s*{[^}]*padding:\s*24px 22px/s);
+
+  assert.doesNotMatch(css, /\.about-block\b/);
+  assert.doesNotMatch(css, /\.metrics-strip\b/);
+  assert.doesNotMatch(css, /\.metric(?:\s|\.|:|\{|,)/);
+});
