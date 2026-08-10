@@ -36,14 +36,14 @@ test("hero keeps two primary actions and exposes GitHub and X as text links", ()
   assert.match(hero, /class="button button-primary" href="#work"/);
   assert.match(hero, /class="button button-secondary" href="assets\/Zhang_Jingyuan_AI_Product_Manager_CN\.pdf"/);
   assert.match(hero, /href="https:\/\/github\.com\/to-real" target="_blank" rel="noopener noreferrer"/);
-  assert.match(hero, /href="https:\/\/x\.com\/Potatoloogs" target="_blank" rel="noopener noreferrer"/);
+  assert.match(hero, /href="https:\/\/x\.com\/Potatoloogos" target="_blank" rel="noopener noreferrer"/);
   assert.equal(countIn(hero, 'class="button '), 2);
 });
 
 test("DeepWisdom highlight states personal scope and shows each metric once", () => {
   assert.match(hero, /DeepWisdom · Agent Evaluation Harness/);
   assert.match(hero, /参与评测系统建设，具体负责评测 Schema、自动检查与长任务恢复机制。/);
-  assert.match(hero, /href="projects\/deepwisdom\.html"/);
+  assert.match(hero, /href="#deepwisdom-case"/);
   for (const metric of ["200+", "70%", "25%"]) {
     assert.equal(countIn(hero, metric), 1, `${metric} should appear once in the hero`);
   }
