@@ -49,6 +49,15 @@ test("DeepWisdom highlight states personal scope and shows each metric once", ()
   }
 });
 
+test("DeepWisdom case link targets the unique first project card", () => {
+  assert.equal(countIn(html, 'id="deepwisdom-case"'), 1);
+  assert.match(
+    html,
+    /<a class="project-card reveal" data-index="01" id="deepwisdom-case" href="projects\/deepwisdom\.html">/
+  );
+  assert.doesNotMatch(hero, /id="deepwisdom-case"/);
+});
+
 test("capability section replaces the old about and global metrics blocks", () => {
   assert.match(html, /class="capability-section"/);
   assert.match(html, /产品能力/);
@@ -79,14 +88,19 @@ test("desktop CSS defines the approved hero and evidence components", () => {
 });
 
 test("responsive CSS covers tablet and mobile without dead hero selectors", () => {
+  const evidenceTabletStart = css.indexOf("@media (max-width: 1024px)");
   const tabletStart = css.indexOf("@media (max-width: 920px)");
   const mobileStart = css.indexOf("@media (max-width: 560px)");
   const reducedMotionStart = css.indexOf("@media (prefers-reduced-motion: reduce)");
+  const evidenceTablet = css.slice(evidenceTabletStart, tabletStart);
   const tablet = css.slice(tabletStart, mobileStart);
   const mobile = css.slice(mobileStart, reducedMotionStart);
 
-  assert.match(tablet, /\.deepwisdom-highlight\s*{[^}]*grid-template-columns:\s*1fr/s);
-  assert.match(tablet, /\.capability-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
+  assert.ok(evidenceTabletStart >= 0, "the evidence components need a 1024px tablet breakpoint");
+  assert.match(evidenceTablet, /\.deepwisdom-highlight\s*{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(evidenceTablet, /\.capability-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
+  assert.doesNotMatch(tablet, /\.deepwisdom-highlight\b/);
+  assert.doesNotMatch(tablet, /\.capability-grid\b/);
   assert.match(mobile, /\.hero-role\s*{[^}]*flex-wrap:\s*wrap/s);
   assert.match(mobile, /\.deepwisdom-metrics\s*{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/s);
   assert.match(mobile, /\.capability-panel\s*{[^}]*padding:\s*24px 22px/s);
