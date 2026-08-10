@@ -461,6 +461,7 @@ img { max-width: 100%; display: block; }
 }
 
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+#deepwisdom-case { scroll-margin-top: 96px; }
 .project-card {
   position: relative;
   min-height: 430px;

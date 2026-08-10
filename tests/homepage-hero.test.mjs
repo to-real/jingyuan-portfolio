@@ -35,8 +35,9 @@ test("hero uses the approved fact-first introduction", () => {
 test("hero keeps two primary actions and exposes GitHub and X as text links", () => {
   assert.match(hero, /class="button button-primary" href="#work"/);
   assert.match(hero, /class="button button-secondary" href="assets\/Zhang_Jingyuan_AI_Product_Manager_CN\.pdf"/);
-  assert.match(hero, /href="https:\/\/github\.com\/to-real" target="_blank" rel="noopener noreferrer"/);
-  assert.match(hero, /href="https:\/\/x\.com\/Potatoloogos" target="_blank" rel="noopener noreferrer"/);
+  assert.match(hero, /<a href="https:\/\/github\.com\/to-real" target="_blank" rel="noopener noreferrer">GitHub @to-real <span aria-hidden="true">↗<\/span><\/a>/);
+  assert.match(hero, /<a href="https:\/\/x\.com\/Potatoloogs" target="_blank" rel="noopener noreferrer">X @Potatoloogs <span aria-hidden="true">↗<\/span><\/a>/);
+  assert.doesNotMatch(hero, /https:\/\/x\.com\/Potatoloogos/);
   assert.equal(countIn(hero, 'class="button '), 2);
 });
 
@@ -49,13 +50,14 @@ test("DeepWisdom highlight states personal scope and shows each metric once", ()
   }
 });
 
-test("DeepWisdom case link targets the unique first project card", () => {
+test("DeepWisdom case link targets the unique first project card and clears the sticky header", () => {
   assert.equal(countIn(html, 'id="deepwisdom-case"'), 1);
   assert.match(
     html,
     /<a class="project-card reveal" data-index="01" id="deepwisdom-case" href="projects\/deepwisdom\.html">/
   );
   assert.doesNotMatch(hero, /id="deepwisdom-case"/);
+  assert.match(css, /#deepwisdom-case\s*{[^}]*scroll-margin-top:\s*96px/s);
 });
 
 test("capability section replaces the old about and global metrics blocks", () => {
